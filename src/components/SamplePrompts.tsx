@@ -18,7 +18,24 @@ interface SamplePromptsProps {
 export function SamplePrompts({ onSelectPrompt, disabled = false }: SamplePromptsProps) {
   return (
     <div className="mb-4">
-      <div className="flex flex-col gap-2 max-w-md mx-auto">
+      {/* Mobile: Horizontal scroll layout */}
+      <div className="flex gap-2 overflow-x-auto pb-2 sm:hidden">
+        {SAMPLE_PROMPTS.map((prompt, idx) => (
+          <Button
+            key={idx}
+            variant="outline"
+            size="sm"
+            onClick={() => onSelectPrompt(prompt)}
+            disabled={disabled}
+            className="text-sm whitespace-nowrap flex-shrink-0 min-w-fit px-3"
+          >
+            {prompt}
+          </Button>
+        ))}
+      </div>
+      
+      {/* Desktop: Vertical layout */}
+      <div className="hidden sm:flex flex-col gap-2 max-w-md mx-auto">
         {SAMPLE_PROMPTS.map((prompt, idx) => (
           <Button
             key={idx}

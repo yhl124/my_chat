@@ -45,7 +45,7 @@ export function MessageInput({ onSendMessage, disabled = false }: MessageInputPr
   };
 
   return (
-    <div className="flex gap-2 items-end">
+    <div className="flex gap-3 items-end">
       <Textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
@@ -53,16 +53,16 @@ export function MessageInput({ onSendMessage, disabled = false }: MessageInputPr
         onInput={handleInput}
         placeholder={PLACEHOLDER_TEXT}
         disabled={disabled}
-        className="flex-1 resize-none min-h-[40px] max-h-[200px]"
+        className="flex-1 resize-none min-h-[44px] max-h-[200px] border-2 border-muted-foreground/20 focus:border-accent transition-colors"
         style={{
           height: "auto",
-          minHeight: "40px",
+          minHeight: "44px",
         }}
       />
       <Button 
         onClick={handleSend} 
         size="icon" 
-        className="h-10 w-10"
+        className="h-11 w-11 bg-accent hover:bg-accent/90 transition-colors"
         disabled={disabled || !message.trim()}
       >
         <Send className="h-4 w-4" />

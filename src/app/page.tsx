@@ -62,43 +62,52 @@ export default function ChatbotPage() {
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-6 h-[calc(100vh-80px)] flex flex-col">
-        {/* Chat Area */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Left Side - Basic Model */}
-          <ChatPanel
-            title={MODEL_NAMES.BASIC}
-            icon={<Bot className="h-4 w-4" />}
-            messages={leftMessages}
-            onCopy={copyToClipboard}
-            onExport={() => exportToPdf('left')}
-            variant="basic"
-          />
+      <div className="h-[calc(100vh-80px)] flex flex-col">
+        {/* Chat Area - Fixed Height with Responsive Design */}
+        <div className="flex-1 min-h-0 pt-4 sm:pt-6">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            {/* Left Side - Basic Model */}
+            <ChatPanel
+              title={MODEL_NAMES.BASIC}
+              icon={<Bot className="h-4 w-4" />}
+              messages={leftMessages}
+              onCopy={copyToClipboard}
+              onExport={() => exportToPdf('left')}
+              variant="basic"
+            />
 
-          {/* Right Side - Advanced Model */}
-          <ChatPanel
-            title={MODEL_NAMES.TUNING}
-            icon={<Sparkles className="h-4 w-4 text-accent" />}
-            messages={rightMessages}
-            onCopy={copyToClipboard}
-            onExport={() => exportToPdf('right')}
-            variant="advanced"
-            rightModel={rightModel}
-            onModelChange={setRightModel}
-          />
+            {/* Right Side - Advanced Model */}
+            <ChatPanel
+              title={MODEL_NAMES.TUNING}
+              icon={<Sparkles className="h-4 w-4 text-accent" />}
+              messages={rightMessages}
+              onCopy={copyToClipboard}
+              onExport={() => exportToPdf('right')}
+              variant="advanced"
+              rightModel={rightModel}
+              onModelChange={setRightModel}
+            />
+          </div>
         </div>
 
-        {/* Sample Prompts */}
-        <SamplePrompts 
-          onSelectPrompt={handleSamplePrompt}
-          disabled={isLoading}
-        />
+        {/* Bottom Section - Fixed at bottom */}
+        <div className="flex-shrink-0 pb-4 sm:pb-6">
+          <div className="container mx-auto px-4">
+          {/* Sample Prompts */}
+          <div className="mb-3 sm:mb-4">
+            <SamplePrompts 
+              onSelectPrompt={handleSamplePrompt}
+              disabled={isLoading}
+            />
+          </div>
 
-        {/* Input Area */}
-        <MessageInput 
-          onSendMessage={handleSendMessage}
-          disabled={isLoading}
-        />
+          {/* Input Area */}
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            disabled={isLoading}
+          />
+          </div>
+        </div>
       </div>
     </div>
   );

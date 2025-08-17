@@ -38,22 +38,22 @@ export function ChatPanel({
   onModelChange,
 }: ChatPanelProps) {
   return (
-    <Card className="flex flex-col !p-0">
-      <div className="px-4 py-1.5 border-b border-border flex items-center justify-between">
-        <div className="flex items-center gap-3">
+    <Card className="flex flex-col !p-0 h-[calc(100vh-300px)] max-h-[400px] sm:h-[calc(100vh-240px)] sm:max-h-[600px]">
+      <div className="px-4 py-3 border-b border-border flex items-center justify-between flex-shrink-0 min-h-[60px]">
+        <div className="flex items-center gap-3 min-h-[32px]">
           <h2 className="text-lg font-semibold text-card-foreground flex items-center gap-2">
             {icon}
             {title}
           </h2>
           {variant === 'advanced' && rightModel && onModelChange && (
             <Select value={rightModel} onValueChange={onModelChange}>
-              <SelectTrigger className="w-32 h-8">
+              <SelectTrigger className="w-36 h-8 text-sm border-2 border-muted-foreground/20 hover:border-muted-foreground/40 focus:border-accent">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="tuning">{MODEL_NAMES.TUNING}</SelectItem>
-                <SelectItem value="rag">{MODEL_NAMES.RAG}</SelectItem>
-                <SelectItem value="websearch">{MODEL_NAMES.WEBSEARCH}</SelectItem>
+              <SelectContent className="min-w-36">
+                <SelectItem value="tuning" className="text-sm">{MODEL_NAMES.TUNING}</SelectItem>
+                <SelectItem value="rag" className="text-sm">{MODEL_NAMES.RAG}</SelectItem>
+                <SelectItem value="websearch" className="text-sm">{MODEL_NAMES.WEBSEARCH}</SelectItem>
               </SelectContent>
             </Select>
           )}
@@ -62,7 +62,7 @@ export function ChatPanel({
           <Download className="h-4 w-4" />
         </Button>
       </div>
-      <div className="flex-1 p-4 overflow-y-auto space-y-6 min-h-[400px]">
+      <div className="flex-1 p-4 pb-8 overflow-y-auto space-y-6 min-h-0">
         {messages.map((message) => (
           <ChatMessage
             key={message.id}

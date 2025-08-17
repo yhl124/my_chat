@@ -11,8 +11,6 @@ export const SAMPLE_PROMPTS = [
   "최신 AI 기술 동향에 대해 설명해주세요",
   "효과적인 프로젝트 관리 방법을 알려주세요",
   "건강한 식단 계획을 세우는 방법은?",
-  "웹 개발의 최신 트렌드는 무엇인가요?",
-  "데이터 분석을 위한 효과적인 방법론을 알려주세요",
 ] as const;
 
 export const PLACEHOLDER_TEXT = "메시지를 입력하세요... (Shift+Enter로 줄바꿈)" as const;
