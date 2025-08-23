@@ -15,6 +15,7 @@ import { Bot, Sparkles, Download } from "lucide-react";
 import { ChatMessage } from "./ChatMessage";
 import type { Message, ModelMethod } from "@/types/chat";
 import { MODEL_NAMES } from "@/constants/prompts";
+import { useEffect, useRef } from "react";
 
 interface ChatPanelProps {
   title: string;
@@ -37,6 +38,19 @@ export function ChatPanel({
   rightModel,
   onModelChange,
 }: ChatPanelProps) {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'end'
+      });
+    }
+  }, [messages]);
+
   return (
     <Card className="flex flex-col !p-0 h-[calc(100vh-300px)] max-h-[400px] sm:h-[calc(100vh-240px)] sm:max-h-[600px]">
       <div className="px-4 py-3 border-b border-border flex items-center justify-between flex-shrink-0 min-h-[60px]">
@@ -62,7 +76,10 @@ export function ChatPanel({
           <Download className="h-4 w-4" />
         </Button>
       </div>
-      <div className="flex-1 p-4 pb-8 overflow-y-auto space-y-6 min-h-0">
+      <div 
+        ref={scrollAreaRef}
+        className="flex-1 p-4 pb-8 overflow-y-auto space-y-8 min-h-0"
+      >
         {messages.map((message) => (
           <ChatMessage
             key={message.id}
@@ -71,6 +88,7 @@ export function ChatPanel({
             variant={variant}
           />
         ))}
+        <div ref={messagesEndRef} />
       </div>
     </Card>
   );

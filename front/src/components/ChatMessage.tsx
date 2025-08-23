@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Copy, Clock } from "lucide-react";
 import type { Message } from "@/types/chat";
+import { ChatSkeleton } from "./ChatSkeleton";
 
 interface ChatMessageProps {
   message: Message;
@@ -23,19 +24,24 @@ export function ChatMessage({ message, onCopy, variant = 'basic' }: ChatMessageP
   const isUser = message.role === 'user';
   const isAdvanced = variant === 'advanced';
 
+  // Show skeleton for loading assistant messages
+  if (!isUser && message.isLoading) {
+    return <ChatSkeleton variant={variant} />;
+  }
+
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+    <div className={`flex ${isUser ? "justify-end mb-4" : "justify-start mb-8"}`}>
       <div className="relative max-w-[80%] group flex items-end gap-1">
         <div
-          className={`p-3 rounded-lg relative ${
+          className={`p-3 rounded-lg relative whitespace-pre-wrap break-words ${
             isUser
               ? "bg-primary text-primary-foreground"
               : isAdvanced
-              ? "bg-accent text-accent-foreground"
-              : "bg-muted text-muted-foreground"
+              ? "bg-purple-100 text-purple-900 border border-purple-200"
+              : "bg-blue-50 text-blue-900 border border-blue-200"
           } ${
             !isUser && !isAdvanced 
-              ? "before:content-[''] before:absolute before:left-[-8px] before:top-4 before:w-0 before:h-0 before:border-[8px] before:border-transparent before:border-r-muted"
+              ? "before:content-[''] before:absolute before:left-[-8px] before:top-4 before:w-0 before:h-0 before:border-[8px] before:border-transparent before:border-r-blue-50"
               : ""
           }`}
         >
@@ -54,17 +60,26 @@ export function ChatMessage({ message, onCopy, variant = 'basic' }: ChatMessageP
           </Button>
         )}
         {!isUser && (
-          <div className="absolute -bottom-6 left-0 right-0 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="absolute -bottom-6 left-3 right-3 flex items-center justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
               <span>{message.tokens_per_second || 0} 토큰/초</span>
             </div>
-            {message.method && (
-              <Badge variant="secondary" className="text-xs">
-                {message.method === 'tuning' ? '튜닝 모델' :
-                 message.method === 'rag' ? 'RAG' : '웹검색'}
-              </Badge>
-            )}
+            <div className="flex items-center gap-1">
+              {/* 기본 모델명 표시 */}
+              {!message.method && (
+                <Badge variant="secondary" className="text-xs">
+                  Gemma-3 4B
+                </Badge>
+              )}
+              {/* 고급 모델 뱃지 */}
+              {message.method && (
+                <Badge variant="secondary" className="text-xs">
+                  {message.method === 'tuning' ? '튜닝 모델' :
+                   message.method === 'rag' ? 'RAG' : '웹검색'}
+                </Badge>
+              )}
+            </div>
           </div>
         )}
       </div>

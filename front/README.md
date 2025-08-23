@@ -1,6 +1,8 @@
-# AI 챗봇 비교 플랫폼
+# AI Chat Frontend
 
-AI 모델들의 응답을 실시간으로 비교할 수 있는 웹 애플리케이션입니다.
+> ⚡ Next.js 기반 AI 채팅 비교 플랫폼 프론트엔드
+
+다양한 AI 모델의 응답을 실시간으로 비교할 수 있는 현대적인 웹 애플리케이션입니다. 실시간 스트리밍과 듀얼 패널 UI를 통해 AI 모델의 성능을 직관적으로 비교할 수 있습니다.
 
 ## 주요 기능
 
@@ -42,7 +44,7 @@ http://localhost:3000에서 애플리케이션에 접근할 수 있습니다.
 
 ```env
 # API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3001
 NEXT_PUBLIC_API_TIMEOUT=30000
 
 # Feature Flags

@@ -15,6 +15,7 @@ export interface Message {
   timestamp: Date;
   method?: ModelMethod;
   tokens_per_second?: number;
+  isLoading?: boolean;
 }
 
 export type ModelMethod = 'tuning' | 'rag' | 'websearch';
