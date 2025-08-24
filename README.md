@@ -6,7 +6,11 @@
 
 ### 통합 관리 도구 사용 (권장)
 
+
 ```bash
+# 루트 폴더에서 back의 uv venv로 실행
+uv run --project back python manage.py start all
+
 # 모든 서비스 시작 (브라우저 자동 실행 없음)
 python manage.py start all
 
