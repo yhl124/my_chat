@@ -52,7 +52,7 @@ export function ChatPanel({
   }, [messages]);
 
   return (
-    <Card className="flex flex-col !p-0 h-[calc(100vh-300px)] max-h-[400px] sm:h-[calc(100vh-240px)] sm:max-h-[600px]">
+    <Card className="flex flex-col !p-0 h-[95%] max-h-[95%] overflow-hidden">
       <div className="px-4 py-3 border-b border-border flex items-center justify-between flex-shrink-0 min-h-[60px]">
         <div className="flex items-center gap-3 min-h-[32px]">
           <h2 className="text-lg font-semibold text-card-foreground flex items-center gap-2">

@@ -62,10 +62,10 @@ export default function ChatbotPage() {
       </header>
 
       {/* Main Content */}
-      <div className="h-[calc(100vh-80px)] flex flex-col">
+      <div className="h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] min-h-[calc(100vh-80px)] lg:min-h-0 flex flex-col">
         {/* Chat Area - Fixed Height with Responsive Design */}
-        <div className="flex-1 min-h-0 pt-4 sm:pt-6">
-          <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <div className="flex-1 min-h-0 pt-4 sm:pt-6 h-full">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 h-full">
             {/* Left Side - Basic Model */}
             <ChatPanel
               title={MODEL_NAMES.BASIC}
@@ -91,7 +91,7 @@ export default function ChatbotPage() {
         </div>
 
         {/* Bottom Section - Fixed at bottom */}
-        <div className="flex-shrink-0 pb-4 sm:pb-6">
+        <div className="flex-shrink-0 pb-2 sm:pb-3">
           <div className="container mx-auto px-4">
           {/* Sample Prompts */}
           <div className="mb-3 sm:mb-4">
